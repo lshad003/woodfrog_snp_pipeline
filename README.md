@@ -4,7 +4,7 @@ This repository contains a modular SNP association analysis pipeline tailored fo
 
 ## 📌 Project Goal
 
-To identify SNPs in metagenome-assembled genomes (MAGs) that are associated with the presence of *Basidiobolus*, a fungal symbiont, across experimental treatments.
+To identify SNPs in metagenome-assembled genomes (MAGs) that are associated with the presence of *Basidiobolus*, across experimental treatments.
 
 ---
 
