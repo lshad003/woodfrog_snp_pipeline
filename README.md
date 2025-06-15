@@ -10,7 +10,7 @@ This repository documents the pipeline for calling intraspecies SNPs in metageno
 
 We use a manually curated list of high-quality, dereplicated MAGs and a metadata file linking each sample ID to its paired-end FASTQ files.
 MAGs are stored in:
-'/bigdata/stajichlab/shared/projects/Herptile/Metagenome/Ls_MAG_C/drep/dRep95/dereplicated_genomes/'
+`/bigdata/stajichlab/shared/projects/Herptile/Metagenome/Ls_MAG_C/drep/dRep95/dereplicated_genomes/`
 
 Sample read paths (R1/R2) are stored in:
 'woodfrog_samples.csv' with the format:
