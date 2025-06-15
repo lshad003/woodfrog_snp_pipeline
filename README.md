@@ -1,4 +1,4 @@
-# Wood Frog Gut Metagenome SNP Analysis Pipeline
+# **Wood Frog Gut Metagenome SNP Analysis Pipeline**
 
 This repository documents the pipeline for calling intraspecies SNPs in metagenome-assembled genomes (MAGs) from Lithobates sylvaticus (wood frog) fecal microbiomes. Metagenomic reads from multiple samples are aligned to a curated, non-redundant set of MAGs to detect single-nucleotide polymorphisms (SNPs) within microbial populations. This reference-based SNP calling approach enables investigation of how microbial strains vary across samples, particularly in response to Basidiobolus treatment, revealing fine-scale genetic variation within the same species across experimental groups.
 
