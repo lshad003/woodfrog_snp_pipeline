@@ -1,0 +1,12 @@
+# Ignore output, temporary, and hidden files
+data/output/
+*.log
+*.png
+*.pdf
+*.tsv
+*.csv
+*.vcf
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
