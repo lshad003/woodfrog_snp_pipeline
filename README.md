@@ -13,6 +13,6 @@ MAGs are stored in:
 `/bigdata/stajichlab/shared/projects/Herptile/Metagenome/Ls_MAG_C/drep/dRep95/dereplicated_genomes/`
 
 Sample read paths (R1/R2) are stored in:
-'woodfrog_samples.csv' with the format:
-'SAMPLE_ID,FASTQ_PATH_WITH_R?'
+`woodfrog_samples.csv` with the format:
+`SAMPLE_ID,FASTQ_PATH_WITH_R?`
 
