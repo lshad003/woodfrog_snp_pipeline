@@ -1,4 +1,3 @@
-
 # Acinetobacter johnsonii SNP Association Analysis
 
 This directory contains data, scripts, and results from a focused SNP-based population genetics analysis of *Acinetobacter johnsonii* metagenome-assembled genomes (MAGs) from the wood frog gut microbiome project. The pipeline aligns reads to a curated *A. johnsonii* reference MAG set, calls intraspecies SNPs, and tests for associations with experimental conditions such as Basidiobolus treatment and egg mass presence.
