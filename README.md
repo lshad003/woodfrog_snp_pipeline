@@ -18,7 +18,7 @@ We use a manually curated list of high-quality, dereplicated MAGs and a metadata
 
 ### 2. Read Alignment
 
-Reads are aligned to each MAG using BWA-MEM2. This step is parallelized via SLURM array jobs for performance.
+Reads are aligned to each MAG using BWA-MEM2. 
 
 - Script:   `01_align_reads_array.sh`
 
