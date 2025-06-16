@@ -27,3 +27,38 @@ Reads are aligned to each MAG using BWA-MEM2.
 - Output location:
 `/bigdata/stajichlab/shared/projects/Herptile/Metagenome/Ls_MAG_C/woodfrog_snp_pipeline/data/output/bam/`
 
+### 3. SNP Calling
+
+SNPs are called per sample-MAG pair using `bcftools mpileup` and `bcftools call`.
+
+- Script: `02_call_snps.sh`
+- Output: Raw VCF files for each sample-MAG pair
+- Output location: `.../woodfrog_snp_pipeline/data/output/vcf/`
+
+### 4. SNP Filtering and Allele Frequency Estimation
+
+- SNPs are filtered based on minimum depth, quality, or presence across samples.
+- Allele frequencies are computed using custom scripts or tools like `vcftools` or `bcftools query`.
+
+- Output: Filtered SNP matrix and major allele frequency table
+- Output location: `.../woodfrog_snp_pipeline/data/output/frequency_tables/`
+
+
+### 5. Association Analysis
+
+- We use linear regression models to identify SNPs associated with treatment groups.
+- Scripts written in Python or R ingest frequency matrices and metadata to test for associations.
+
+- Script: `03_snp_association_analysis.py`
+- Output: Association statistics per SNP (e.g., p-values, beta coefficients)
+- Output location: `.../woodfrog_snp_pipeline/results/association_results.csv`
+
+### 6. Visualization
+
+- Visualizations include Manhattan plots and SNP heatmaps to summarize associations.
+- R or Python plotting scripts take in association data and SNP annotations.
+
+- Scripts: `04_plot_manhattan.R`, `05_plot_heatmap.py`
+- Output: PDF and PNG visualizations
+- Location: `.../woodfrog_snp_pipeline/results/figures/`
+
