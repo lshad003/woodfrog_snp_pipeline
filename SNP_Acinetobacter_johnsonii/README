@@ -1,0 +1,65 @@
+
+# Acinetobacter johnsonii SNP Association Analysis
+
+This directory contains data, scripts, and results from a focused SNP-based population genetics analysis of *Acinetobacter johnsonii* metagenome-assembled genomes (MAGs) from the wood frog gut microbiome project. The pipeline aligns reads to a curated *A. johnsonii* reference MAG set, calls intraspecies SNPs, and tests for associations with experimental conditions such as Basidiobolus treatment and egg mass presence.
+
+---
+
+## Pipeline Overview
+
+### 1. Read Mapping
+
+Reads were mapped to a curated set of *A. johnsonii* MAGs and reference genomes.
+
+- Input: `sample_subset_with_paths.tsv`, `ref_genomes/`
+- Tool: `bwa mem`, `samtools`
+- Output: BAM files in `bams/` and `bams_ref/`
+
+### 2. SNP Calling
+
+SNPs were called using `bcftools`:
+
+```bash
+bcftools mpileup -Ou -f ref.fa sample.bam | bcftools call -mv -Oz -o sample.vcf.gz
+```
+
+VCFs stored in: `vcf_output/`
+
+### 3. Allele Frequency Matrix Construction
+
+- Major allele frequencies extracted per SNP per sample
+- Result stored in: `maf_matrix.tsv`
+
+### 4. SNP Filtering and Binarization
+
+- SNPs filtered by coverage and frequency thresholds
+- Converted to binary (presence/absence)
+- Output files:
+  - `maf_matrix_binarized.tsv`
+  - `maf_matrix_binarized_filtered.tsv`
+
+### 5. Association Analysis
+
+**Linear/Logistic Regression:**
+
+- `logreg_snp_vs_basidiobolus.tsv`: SNPs tested against Basidiobolus treatment
+- `logreg_snp_vs_egg_mass.tsv`: SNPs tested against egg mass presence
+- `logreg_significant_snps.tsv`: Significant hits
+
+**Fisher’s Exact Tests:**
+
+- Pairwise comparisons between:
+  - STP1710.7 vs Control
+  - STP1717.1 vs Control
+  - STP1710.7 vs STP1717.1
+
+All adjusted for multiple testing using FDR correction.
+
+### 6. Visualization
+
+A volcano plot was generated to summarize significant SNPs associated with Basidiobolus treatment.
+
+- Output: `volcano_plot_basidiobolus.png`
+
+---
+
