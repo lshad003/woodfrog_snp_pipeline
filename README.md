@@ -59,3 +59,15 @@ Reads were aligned to the `all_mags.fa` reference using a SLURM array job (`01_a
 - `SAMPLE_ID` (unique sample identifier)
 
 - `FASTQ_PATH_WITH_R?` (path to FASTQ files using ? as a placeholder for 1 and 2)
+
+### 3. SNP Calling
+
+We performed SNP calling using `bcftools` on the CRAM-aligned reads against the `all_mags.fa` reference.
+
+All BAM/CRAM alignments were processed together using bcftools mpileup and bcftools call:
+
+- Script: `02_variant_call_combined.sh`
+
+- Output: Multi-sample VCF (`output/vcf_gz/all_samples.vcf.gz`)
+
+This ensures consistent variant representation across samples for downstream frequency calculations. 
