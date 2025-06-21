@@ -39,5 +39,35 @@ The file has two columns:
 
 
 
-### 2. Read Alignment
 
+### 2. Mapping Reads to MAG Reference
+
+Metagenomic reads were mapped to a concatenated reference file composed of all dereplicated MAGs. This step used BWA-MEM2 for efficient alignment, and outputs were stored in CRAM format to reduce disk usage.
+
+#### a. Reference Construction and Indexing
+
+The MAG reference was constructed by renaming all contigs in the MAGs with their MAG ID prefix using `perl`, then concatenating into a single FASTA:
+
+```bash
+MAG_LIST="MAGs.fofn"
+DB="db/all_mags.fa"
+mkdir -p db logs
+
+cat $MAG_LIST | while read -r mag; do
+    n=$(basename $mag .fa)
+    perl -p -e "s/>/>$n./" $mag
+done > $DB
+
+The reference was indexed with BWA-MEM2:
+
+bwa-mem2 index $DB
+
+This ensures contig names are unique across MAGs and that the reference is searchable for alignment.
+
+#### b. Read Mapping with BWA-MEM2 (Array Job)
+
+Reads were aligned to the `all_mags.fa` reference using a SLURM array job (`01_align_reads_array.sh`). Each job handled one row from the `sample_subset_with_paths.tsv` file, which contains:
+
+- `SAMPLE_ID` (unique sample identifier)
+
+- `FASTQ_PATH_WITH_R?` (path to FASTQ files using ? as a placeholder for 1 and 2)
