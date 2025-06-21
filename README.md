@@ -48,7 +48,7 @@ Metagenomic reads were mapped to a concatenated reference file composed of all d
 
 The MAG reference was constructed by renaming all contigs in the MAGs with their MAG ID prefix using `perl`, then concatenating into a single FASTA:
 
-```bash
+``bash
 MAG_LIST="MAGs.fofn"
 DB="db/all_mags.fa"
 mkdir -p db logs
@@ -56,11 +56,11 @@ mkdir -p db logs
 cat $MAG_LIST | while read -r mag; do
     n=$(basename $mag .fa)
     perl -p -e "s/>/>$n./" $mag
-done > $DB
+done > $DB``
 
 The reference was indexed with BWA-MEM2:
 
-bwa-mem2 index $DB
+`bwa-mem2` index $DB
 
 This ensures contig names are unique across MAGs and that the reference is searchable for alignment.
 
