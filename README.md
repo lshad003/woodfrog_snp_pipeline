@@ -148,7 +148,31 @@ This file must include the following columns:
 
 ### b. Output Files
 
-For each MAG, the script generates a tab-delimited file:
+For each MAG, the script generates a tab-delimited file: 
+`MAG_ID_GROUP1_vs_GROUP2_fisher.tsv` here `/bigdata/stajichlab/shared/projects/Herptile/Metagenome/Ls_MAG_C/woodfrog_snp_pipeline/fisher_assoc_results`.
+
+
+## 6. FDR Correction and Taxonomy-Stratified Manhattan Plotting
+
+This step applies multiple hypothesis correction to SNP association p-values and visualizes the results using a Manhattan plot, grouped by MAG taxonomy.
+
+### a. FDR and Bonferroni Correction
+We apply both FDR (Benjamini-Hochberg) and Bonferroni correction to all MAG-level Fisher test results using `correct_snp_pvalues_all_mags.py`.
+
+Output
+Each input file like:
+
+`MAG_ID_STP1710.7_vs_control_fisher.tsv` 
+
+is converted into a corrected file:
+`MAG_ID_STP1710.7_vs_control_corrected.tsv`
+
+Stored in:
+`/`bigdata/stajichlab/shared/projects/Herptile/Metagenome/Ls_MAG_C/woodfrog_snp_pipeline/fisher_assoc_results/corrected_all_control_vs_STP1710.7/`
+
+### b. Joint Manhattan Plot with Stacked Taxonomy Bar
+We then plot all corrected MAGs' SNPs, displaying -log10(p) and highlighting FDR-significant SNPs (FDR < 0.05) in red. MAGs are sorted by their taxonomy, and a multi-level stacked color bar represents Phylum through Species using `plot_manhattan_with_taxonomy_stack.py
+`.
 
 
 
