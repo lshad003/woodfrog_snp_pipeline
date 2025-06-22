@@ -126,5 +126,30 @@ This matrix serves as the input for downstream association testing and visualiza
 - Missing calls are represented as `NA`
 
 
+## 5. SNP Association Testing
+
+We tested for associations between SNPs and treatment groups using Fisher’s exact test, implemented in a custom Python script:
+`run_fisher_assoc_test.py`
+
+
+This script evaluates the presence/absence of SNP alleles across samples in two groups (e.g., control vs. STP1710.7) and computes p-values per SNP.
+
+### a. Input Files
+
+- MAF matrix files (`*_maf_matrix.tsv`) generated in Step 4
+- Sample metadata file with treatment labels:
+
+`metadata.tsv`
+
+
+This file must include the following columns:
+- `SAMPLE_ID`: Matches CRAM or sample name  
+- `GROUP`: Treatment group label (e.g., control or STP1710.7)
+
+### b. Output Files
+
+For each MAG, the script generates a tab-delimited file:
+
+
 
 
